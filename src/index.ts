@@ -106,3 +106,30 @@
 // library.displayBooks();
 // library.displayReaders();
 
+import "./styles.css";
+import { Student, Subject } from "./models/Student";
+
+const student1 = new Student("Smith");
+const student2 = new Student("Johnson");
+
+student1.insertGrade(Subject.MATH, 5);
+student1.insertGrade(Subject.ENGLISH, 4);
+student1.insertGrade(Subject.SCIENCE, 3);
+
+student2.insertGrade(Subject.MATH, 2);
+student2.insertGrade(Subject.HISTORY, 3);
+student2.insertGrade(Subject.ENGLISH, 4);
+
+console.log("\n📚 Gradebook After Adding Grades:");
+Student.printGradebook();
+
+// Add more grades to verify updates
+student1.insertGrade(Subject.ENGLISH, 5);
+student1.insertGrade(Subject.ENGLISH, 1);
+student1.insertGrade(Subject.ENGLISH, 1);
+student1.insertGrade(Subject.ENGLISH, 1);
+student1.insertGrade(Subject.ENGLISH, 1);
+student2.insertGrade(Subject.SCIENCE, 1);
+
+console.log("\n📚 Gradebook After Updating:");
+Student.printGradebook();
