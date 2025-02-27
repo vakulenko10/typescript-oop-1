@@ -1,6 +1,5 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: "./src/index.ts",
@@ -21,7 +20,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        use: ["style-loader", "css-loader"], // ✅ Use style-loader for HMR
       },
     ],
   },
@@ -30,13 +29,12 @@ module.exports = {
       template: "./src/index.html",
       filename: "index.html",
     }),
-    new MiniCssExtractPlugin({
-      filename: "styles.css",
-    }),
   ],
   devServer: {
-    static: "./dist",
-    hot: true,
+    static: path.resolve(__dirname, "dist"),
+    hot: true, // ✅ Enables hot reloading
+    open: true, // Opens the browser automatically
+    port: 8080, // Change the port if needed
   },
   mode: "development",
 };
